@@ -19,8 +19,16 @@ jobs:
         run: bash ./setup_env.sh -p apt
       - name: Build
         run: ./build_uefi.py -d ${{ inputs.device }} -r DEBUG -m ${{ inputs.model }} -c
+      - name: Show output
+        run: |
+          ls -l Build/*/DEBUG_CLANGPDB/FV/*.fd Build/*/DEBUG_CLANGPDB/FV/*.gz Mu-*.img BootShim/BootShim.bin
+          sha256sum Build/*/DEBUG_CLANGPDB/FV/*.fd Mu-*.img BootShim/BootShim.bin
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: fd-${{ inputs.device }}
-          path: Build/*/DEBUG_CLANGPDB/FV/*.fd
+          path: |
+            Build/*/DEBUG_CLANGPDB/FV/*.fd
+            Build/*/DEBUG_CLANGPDB/FV/*.gz
+            Mu-*.img
+            BootShim/BootShim.bin
