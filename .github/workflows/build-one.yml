@@ -1,0 +1,26 @@
+name: build-one
+on:
+  workflow_dispatch:
+    inputs:
+      device:
+        description: device codename
+        default: giulia
+        required: true
+      model:
+        description: model index
+        default: "0"
+        required: true
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup
+        run: bash ./setup_env.sh -p apt
+      - name: Build
+        run: ./build_uefi.py -d ${{ inputs.device }} -r DEBUG -m ${{ inputs.model }} -c
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: fd-${{ inputs.device }}
+          path: Build/*/DEBUG_CLANGPDB/FV/*.fd
