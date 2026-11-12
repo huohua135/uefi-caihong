@@ -40,6 +40,14 @@
 
 [PcdsFixedAtBuild]
   #
+  # Console verbosity. The DEBUG default prints a memory-allocation line for
+  # every driver dispatch, and on a 3000x2120 graphics console that costs the
+  # whole boot: ABL's watchdog fires about sixteen seconds after the shim and
+  # the payload never gets to start. Keep errors only (DEBUG_ERROR).
+  #
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000000
+
+  #
   # DDR Memory
   #
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
