@@ -24,7 +24,7 @@
 //
 STATIC VOID *RegisteredSfsProtocol = NULL;
 
-#if defined(ENABLE_SECUREBOOT) && (ENABLE_SECUREBOOT)
+#if 0 /* caihong: EDK II expands ENABLE_SECUREBOOT to an empty token; the port runs without secure boot */
 BOOLEAN
 ReplaceSiPolicy (
   IN UINT8 *CurrentFile,
@@ -136,7 +136,7 @@ ManageSiPolicy (
     return;
   }
 
-#if defined(ENABLE_SECUREBOOT) && (ENABLE_SECUREBOOT)
+#if 0 /* caihong: EDK II expands ENABLE_SECUREBOOT to an empty token; the port runs without secure boot */
   UINT8 *FileContent           = NULL;
   UINT8 *CustomFileContent     = NULL;
   UINTN  FileContentSize       = 0;
@@ -213,7 +213,7 @@ ProcessFileSystem (IN EFI_FILE_PROTOCOL *FsVolume)
     return;
   }
 
-#if defined(ENABLE_SECUREBOOT) && (ENABLE_SECUREBOOT)
+#if 0 /* caihong: EDK II expands ENABLE_SECUREBOOT to an empty token; the port runs without secure boot */
   // Create "SiPolicy.p7b" File
   if (Status == EFI_NOT_FOUND) {
     Status = FsVolume->Open (FsVolume, &SiPolicyFile, EFI_SIPOLICY_FILE_PATH, EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
@@ -293,7 +293,7 @@ SetupSecureBoot ()
   EFI_STATUS  Status;
   EFI_EVENT   CallbackEvent;
 
-#if defined(ENABLE_SECUREBOOT) && (ENABLE_SECUREBOOT)
+#if 0 /* caihong: EDK II expands ENABLE_SECUREBOOT to an empty token; the port runs without secure boot */
   // Enroll Secure Boot Keys
   Status = SetSecureBootConfig (0);
   if (EFI_ERROR (Status)) {
