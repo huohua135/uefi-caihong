@@ -56,7 +56,6 @@
   # FILE_GUID of UniXNUPkg/Application/UniXNU/UniXNU.inf in EDK II byte order.
   #
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x04, 0x52, 0x66, 0x9B, 0x33, 0xA1, 0xA2, 0x47, 0x93, 0x96, 0x9E, 0x2B, 0x37, 0x0A, 0x4E, 0x25 }
-  gEfiMdeModulePkgTokenSpaceGuid.PcdPlatformBootTimeOut|0
 
   #
   # DDR Memory
