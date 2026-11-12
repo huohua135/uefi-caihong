@@ -94,6 +94,10 @@
   # UniXNU
   UniXNUPkg/Application/UniXNU/UniXNU.inf
   UniXNUPkg/Driver/UniXNUDxe/UniXNUDxe.inf
+  # caihong: exposes the UniXNU payload (UFS partition) as a block device
+  caihongPkg/Drivers/CaihongInitrdDxe/CaihongInitrdDxe.inf
+  # XNU loader, packed into the firmware volume with the volume driver above
+  DarwinBootPkg/Driver/DarwinBoot.inf
 
   [LibraryClasses]
   UniXNULib|UniXNUPkg/Library/UniXNULib/UniXNULib.inf
