@@ -43,9 +43,20 @@
   # Console verbosity. The DEBUG default prints a memory-allocation line for
   # every driver dispatch, and on a 3000x2120 graphics console that costs the
   # whole boot: ABL's watchdog fires about sixteen seconds after the shim and
-  # the payload never gets to start. Keep errors only (DEBUG_ERROR).
+  # the payload never gets to start. Keep errors only (DEBUG_ERROR) while the
+  # boot is being squeezed into that window.
   #
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80000000
+
+  #
+  # Boot straight into UniXNU. Without this the boot manager front page comes
+  # up, waits for a key nobody presses, and the watchdog takes the board before
+  # the payload is ever reached: the screen shows the white front page and then
+  # 900E, which is exactly what the 2026-11-12 runs did.
+  # FILE_GUID of UniXNUPkg/Application/UniXNU/UniXNU.inf in EDK II byte order.
+  #
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x04, 0x52, 0x66, 0x9B, 0x33, 0xA1, 0xA2, 0x47, 0x93, 0x96, 0x9E, 0x2B, 0x37, 0x0A, 0x4E, 0x25 }
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPlatformBootTimeOut|0
 
   #
   # DDR Memory
